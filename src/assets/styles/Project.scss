@@ -1,3 +1,67 @@
+.projects-carousel-wrapper {
+  max-width: 900px;  
+  margin: 0 auto;
+  padding: 40px 20px;
+
+  .slick-prev:before, .slick-next:before {
+    color: #333; 
+    font-size: 24px;
+  }
+}
+
+.project-slide {
+  padding: 10px;
+  
+  .project-content-card {
+    display: flex;
+    flex-direction: column; // Stacks photo above text nicely inside the carousel slide
+    background: #ffffff;    // Card background
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    
+    img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+      
+      &:hover {
+        transform: scale(1.03);
+      }
+    }
+  }
+}
+
+.project-info-box {
+  padding: 24px;
+  text-align: left;
+
+  h2 {
+    margin-top: 0;
+    color: #111;
+  }
+}
+
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 12px 0;
+
+  .tag {
+    background-color: #f0f0f5; 
+    color: #555566;           
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 50px;     
+    text-transform: uppercase; 
+    letter-spacing: 0.5px;
+    border: 1px solid rgba(0,0,0,0.05);
+  }
+}
+
 .projects-container {
     display: flex;
     flex-direction: column;
