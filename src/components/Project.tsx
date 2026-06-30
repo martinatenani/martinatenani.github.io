@@ -1,6 +1,8 @@
 import React, {useState} from "react";
 import Slider from "react-slick";
 import {Modal, Box, Typography, Button}from "@mui/material"
+import { useNavigate } from "react-router-dom";
+
 //images
 import mock10 from '../assets/images/mock10.png';
 
@@ -48,7 +50,8 @@ const modalStyle = {
 };
 
 function Project() {
-
+    const navigate = useNavigate();
+    
     //track the state
     const [selectedProject, setSelectedProject] = useState<typeof projectsData[0] | null>(null);
 
@@ -126,10 +129,16 @@ function Project() {
                 variant="contained" 
                 color="primary"
                 sx={{ mt: 4, width: '100%', textTransform: 'none', fontWeight: 'bold', borderRadius: '8px', padding: '10px' }}
-                onClick={() => {
-                  alert(`Navigating to /projects/${selectedProject.slug} in the next step!`);
-                  // We will replace this alert with real routing in the next step
-                }}
+               onClick={() => {
+                if (selectedProject) {
+                  // 1. Close the modal out of the screen state cleanly
+                  setSelectedProject(null); 
+                  
+                  // 2. Direct the browser to your brand new technical case study sub-page route
+                  // Note: We hardcoded /project/filmate-ai in App.tsx, so let's match that route!
+                  navigate(`/project/${selectedProject.slug}`);
+                }
+              }}
               >
                 Read Full Technical Case Study ↗
               </Button>
