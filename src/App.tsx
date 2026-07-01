@@ -31,14 +31,12 @@ function App() {
       }, []);
 
     return (
-    <Router>
+   <Router basename={process.env.NODE_ENV === 'production' ? '/myPortfolio' : '/'}>
         <div className={`main-container ${mode === 'dark' ? 'dark-mode' : 'light-mode'}`}>
-            {/* Navigation stays outside Routes */}
             <Navigation parentToChild={{ mode }} modeChange={handleModeChange} />
             
             <FadeIn transitionDuration={700}>
                 <Routes>
-                    {/* ROUTE 1: Main Landing Page */}
                     <Route path="/" element={
                         <>
                             <Main />
@@ -49,9 +47,7 @@ function App() {
                         </>
                     } />
 
-                    {/* ROUTE 2: standalone Case Study Page */}
                     <Route path="/project/filmate-ai" element={<FilmateCaseStudy />} />
-                    {/* Add more routes here */}
                 </Routes>
             </FadeIn>
             
