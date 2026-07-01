@@ -2,7 +2,7 @@
   "name": "myPortfolio",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://martinatenani.github.io",
+  "homepage": "https://martinatenani.github.io/myPortfolio",
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
     "@emotion/react": "^11.14.0",
