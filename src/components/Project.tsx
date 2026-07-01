@@ -131,12 +131,10 @@ function Project() {
                 sx={{ mt: 4, width: '100%', textTransform: 'none', fontWeight: 'bold', borderRadius: '8px', padding: '10px' }}
                onClick={() => {
                 if (selectedProject) {
-                  // 1. Close the modal out of the screen state cleanly
+
                   setSelectedProject(null); 
-                  
-                  // 2. Direct the browser to your brand new technical case study sub-page route
-                  // Note: We hardcoded /project/filmate-ai in App.tsx, so let's match that route!
                   navigate(`/project/${selectedProject.slug}`);
+                  
                 }
               }}
               >
