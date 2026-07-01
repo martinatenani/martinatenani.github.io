@@ -47,13 +47,65 @@ form {
   margin-bottom: 15px !important;
 }
 
+$dark-text: #ffffff;
+$dark-muted: #b0b0b0;
+$dark-bg: #000000;
+
+$light-text: #1a1a1a;
+$light-muted: #757575;
+$light-bg: #ffffff;
+
 #contact {
   .MuiInputBase-root {
-    background-color: transparent !important; 
+    background-color: transparent; 
+
+    input::placeholder,
+    textarea::placeholder {
+      opacity: 1; 
+    }
   }
 
-  fieldset {
-    // This removes the forced white background on the border frame completely
-    background-color: transparent; 
+ 
+  .dark-mode & { 
+    .MuiInputBase-root {
+      color: $dark-text;
+
+      input::placeholder,
+      textarea::placeholder {
+        color: $dark-muted;
+      }
+    }
+
+    .MuiFormLabel-root {
+      color: $dark-muted;
+      &.Mui-focused { color: $dark-text; }
+    }
+
+    fieldset {
+      background-color: $dark-bg;
+      border-color: rgba(255, 255, 255, 0.23); 
+    }
+  }
+
+ 
+  .light-mode & { 
+    .MuiInputBase-root {
+      color: $light-text;
+
+      input::placeholder,
+      textarea::placeholder {
+        color: $light-muted;
+      }
+    }
+
+    .MuiFormLabel-root {
+      color: $light-muted;
+      &.Mui-focused { color: $light-text; }
+    }
+
+    fieldset {
+      background-color: $light-bg;
+      border-color: rgba(0, 0, 0, 0.23); 
+    }
   }
 }

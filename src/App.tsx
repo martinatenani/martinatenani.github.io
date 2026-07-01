@@ -31,7 +31,8 @@ function App() {
       }, []);
 
     return (
-   <Router basename={process.env.NODE_ENV === 'production' ? '/myPortfolio' : '/'}>
+    //<Router basename={process.env.NODE_ENV === 'production' ? '/myPortfolio' : '/'}>
+   <Router basename={process.env.NODE_ENV === 'development' ? '/myPortfolio' : '/'}>
         <div className={`main-container ${mode === 'dark' ? 'dark-mode' : 'light-mode'}`}>
             <Navigation parentToChild={{ mode }} modeChange={handleModeChange} />
             
