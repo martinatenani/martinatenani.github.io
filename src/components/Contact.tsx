@@ -34,7 +34,7 @@ function Contact() {
         email: email,
         message: message
       };
-
+ 
       emailjs.send('service_f1uxk29', 'template_4pd5s22', templateParams, 'pu0DpxbksIel5slre')
         .then((response) => {
           console.log('SUCCESS!', response.status, response.text);
