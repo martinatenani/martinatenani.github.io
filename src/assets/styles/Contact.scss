@@ -46,3 +46,14 @@ form {
   width: 100% !important;
   margin-bottom: 15px !important;
 }
+
+#contact {
+  .MuiInputBase-root {
+    background-color: transparent !important; 
+  }
+
+  fieldset {
+    // This removes the forced white background on the border frame completely
+    background-color: transparent; 
+  }
+}
