@@ -17,7 +17,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 
 const drawerWidth = 240;
-const navItems = [['Expertise', 'expertise'], ['History', 'history'], ['Projects', 'projects'], ['Contact', 'contact']];
+const navItems = [['Projects', 'projects'], ['Expertise', 'expertise'], ['History', 'history'], ['Contact', 'contact']];
 
 function Navigation({parentToChild, modeChange}: any) {
 
@@ -51,12 +51,13 @@ function Navigation({parentToChild, modeChange}: any) {
     const expertiseElement = document.getElementById(section);
     if (expertiseElement) {
       expertiseElement.scrollIntoView({ behavior: 'smooth' });
-      console.log('Scrolling to:', expertiseElement);  // Debugging: Ensure the element is found
+      console.log('Scrolling to:', expertiseElement);
     } else {
-      console.error('Element with id "expertise" not found');  // Debugging: Log error if element is not found
+      console.error('Element with id "expertise" not found');
     }
   };
 
+  // MOBILE SIDE DRAWER MENU
   const drawer = (
     <Box className="navigation-bar-responsive" onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
       <p className="mobile-menu-top"><ListIcon/>Menu</p>
@@ -69,6 +70,18 @@ function Navigation({parentToChild, modeChange}: any) {
             </ListItemButton>
           </ListItem>
         ))}
+        {/* ADDED FOR MOBILE: Seamless List Item for the CV download */}
+        <Divider />
+        <ListItem disablePadding>
+          <ListItemButton 
+            component="a" 
+            href={`${process.env.PUBLIC_URL}/Martina_Tenani_CV.pdf`}
+            download="Martina_Tenani_CV.pdf"
+            sx={{ textAlign: 'center', color: '#5000ca', fontWeight: 'bold' }}
+          >
+            <ListItemText primary="Download CV (PDF)" />
+          </ListItemButton>
+        </ListItem>
       </List>
     </Box>
   );
@@ -87,17 +100,35 @@ function Navigation({parentToChild, modeChange}: any) {
           >
             <MenuIcon />
           </IconButton>
+          
           {mode === 'dark' ? (
             <LightModeIcon onClick={() => modeChange()}/>
           ) : (
             <DarkModeIcon onClick={() => modeChange()}/>
           )}
+
+          <Box sx={{ flexGrow: 1 }} />
+
           <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
             {navItems.map((item) => (
               <Button key={item[0]} onClick={() => scrollToSection(item[1])} sx={{ color: '#fff' }}>
                 {item[0]}
               </Button>
             ))}
+            
+            <Button 
+              component="a" 
+              href={`${process.env.PUBLIC_URL}/Martina_Tenani_CV.pdf`} 
+              download="Martina_Tenani_CV.pdf"
+              sx={{ 
+                color: '#fff', 
+                marginLeft: '15px',
+                border: '1px solid rgba(255, 255, 255, 0.5)',
+                '&:hover': { border: '1px solid #fff', backgroundColor: 'rgba(255, 255, 255, 0.1)' }
+              }}
+            >
+              Curriculum Vitae (PDF)
+            </Button>
           </Box>
         </Toolbar>
       </AppBar>
@@ -107,7 +138,7 @@ function Navigation({parentToChild, modeChange}: any) {
           open={mobileOpen}
           onClose={handleDrawerToggle}
           ModalProps={{
-            keepMounted: true, // Better open performance on mobile.
+            keepMounted: true, 
           }}
           sx={{
             display: { xs: 'block', sm: 'none' },
