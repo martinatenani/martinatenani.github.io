@@ -1,4 +1,4 @@
-name: Deploy React Portfolio from Subfolder
+name: Deploy React Portfolio
 
 on:
   push:
@@ -30,21 +30,20 @@ jobs:
           node-version: 22
 
       - name: Install Dependencies
-        run: |
-          cd myPortfolio
-          npm ci
+        # FIXED: Removed the 'cd myPortfolio' command entirely
+        run: npm ci
 
       - name: Build Project
-        run: |
-          cd myPortfolio
-          npm run build
+        # FIXED: Runs the build straight from the root workspace
+        run: npm run build
         env:
           CI: false
 
       - name: Upload Compiled Build Folder
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './myPortfolio/build'
+          # FIXED: Grabs the build folder right from the root directory
+          path: './build'
 
       - name: Deploy to GitHub Pages
         id: deployment
