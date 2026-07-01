@@ -1,4 +1,4 @@
-name: Deploy React Portfolio from Subfolder
+name: Deploy React Portfolio
 
 on:
   push:
@@ -27,29 +27,23 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          # 1. Fixed the deprecation warning by upgrading to Node 22 (the stable Active LTS)
           node-version: 22
-          cache: 'npm'
-          # 2. Fixed the path error: Using standard workspace environment path syntax
-          cache-dependency-path: '${{ github.workspace }}/myPortfolio/package-lock.json'
 
       - name: Install Dependencies
-        # 3. Running explicit inline directory execution to avoid path mismatch conflicts
-        run: |
-          cd myPortfolio
-          npm ci
+        # FIXED: Removed the 'cd myPortfolio' command entirely
+        run: npm ci
 
       - name: Build Project
-        run: |
-          cd myPortfolio
-          npm run build
+        # FIXED: Runs the build straight from the root workspace
+        run: npm run build
         env:
           CI: false
 
       - name: Upload Compiled Build Folder
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './myPortfolio/build'
+          # FIXED: Grabs the build folder right from the root directory
+          path: './build'
 
       - name: Deploy to GitHub Pages
         id: deployment
