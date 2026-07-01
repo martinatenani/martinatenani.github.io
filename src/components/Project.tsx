@@ -4,7 +4,7 @@ import {Modal, Box, Typography, Button}from "@mui/material"
 import { useNavigate } from "react-router-dom";
 
 //images
-import mock10 from '../assets/images/mock10.png';
+import mock10 from '../assets/images/FilmateCaseStudy/mock10.png';
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";

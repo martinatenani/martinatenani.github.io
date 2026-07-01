@@ -5,7 +5,7 @@ import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
 //Images
-import mock10 from '../../assets/images/mock10.png';
+import mock10 from '../../assets/images/FilmateCaseStudy/mock10.png';
 
 function FilmateCaseStudy(){
     const codeBlock = `// Flask API Vector Matcher Pipeline
