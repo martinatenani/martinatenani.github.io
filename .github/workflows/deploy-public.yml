@@ -19,11 +19,6 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
-    
-    # This sets the working directory for ALL subsequent execution run steps at once
-    defaults:
-      run:
-        working-directory: myPortfolio
 
     steps:
       - name: Checkout Code
@@ -32,24 +27,29 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          # 1. Fixed the deprecation warning by upgrading to Node 22 (the stable Active LTS)
+          node-version: 22
           cache: 'npm'
-          # FIXED: Removed the leading dot-slash so the absolute repository root path maps cleanly
-          cache-dependency-path: myPortfolio/package-lock.json
+          # 2. Fixed the path error: Using standard workspace environment path syntax
+          cache-dependency-path: '${{ github.workspace }}/myPortfolio/package-lock.json'
 
       - name: Install Dependencies
-        run: npm ci
+        # 3. Running explicit inline directory execution to avoid path mismatch conflicts
+        run: |
+          cd myPortfolio
+          npm ci
 
       - name: Build Project
-        run: npm run build
+        run: |
+          cd myPortfolio
+          npm run build
         env:
           CI: false
 
       - name: Upload Compiled Build Folder
         uses: actions/upload-pages-artifact@v3
         with:
-          # FIXED: Absolute reference structure mapping from the checkout root directory
-          path: myPortfolio/build
+          path: './myPortfolio/build'
 
       - name: Deploy to GitHub Pages
         id: deployment
