@@ -32,7 +32,7 @@ function Timeline() {
             contentArrowStyle={{ borderRight: '7px solid  white' }}
             date="Jun 2020 - Aug 2024"
             iconStyle={{ background: '#5000ca', color: 'rgb(39, 40, 34)' }}
-            icon={<FontAwesomeIcon icon={faGraduationCap as any} />}
+            icon={<FontAwesomeIcon icon={faBriefcase as any} />}
           >
             <h3 className="vertical-timeline-element-title">Junior Analyst for CLAL</h3>
             <h4 className="vertical-timeline-element-subtitle">Modena, IT</h4>
