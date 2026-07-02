@@ -153,3 +153,31 @@ p, a, h1, h2, h3, h4, h5, label, button {
     }
   }
 }
+
+:root:has(.dark-mode) {
+  --carousel-arrow-color: #6800ca91;
+  --carousel-arrow-hover: #6800ca;
+  
+  --card-bg-color: #1e1e24;       
+  --card-text-color: #ffffff;
+
+  --modal-bg-color: #1a1a1e;       
+  --modal-text-secondary: #b3b3b3; 
+} 
+
+:root:has(.light-mode) {
+   --carousel-arrow-color: #da750293;
+  --carousel-arrow-hover: #da7502;
+  
+  --card-bg-color: #ffffff;       
+  --card-text-color: #111111;     
+
+  --modal-bg-color: #ffffff;       
+  --modal-text-secondary: #555555; 
+}
+
+.custom-theme-modal {
+  background-color: var(--modal-bg-color, #ffffff) !important;
+  color: var(--card-text-color, #111111) !important;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}

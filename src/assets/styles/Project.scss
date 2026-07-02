@@ -1,24 +1,40 @@
 .projects-carousel-wrapper {
-  max-width: 900px;  
+  max-width: 820px;   
   margin: 0 auto;
-  padding: 40px 20px;
+  padding: 40px 40px; 
+  overflow: hidden;   
+  position: relative; 
+
+  .slick-prev { left: 10px; z-index: 2; }
+  .slick-next { right: 10px; z-index: 2; }
 
   .slick-prev:before, .slick-next:before {
-    color: #333; 
-    font-size: 24px;
+    font-size: 28px; 
+    opacity: 0.75;   
+    color: var(--carousel-arrow-color) !important; 
+    transition: color 0.3s ease, opacity 0.2s ease; 
+  }
+
+  .slick-prev:hover:before, .slick-next:hover:before {
+    color: var(--carousel-arrow-hover) !important; 
+    opacity: 1;
   }
 }
 
 .project-slide {
-  padding: 10px;
-  
+  padding: 20px 25px; 
+  transition: all 0.4s ease; 
+  opacity: 0.4;       
+  transform: scale(0.85); 
+
   .project-content-card {
     display: flex;
-    flex-direction: column; // Stacks photo above text nicely inside the carousel slide
-    background: #ffffff;    // Card background
+    flex-direction: column; 
+    background: var(--card-bg-color);    
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    transition: background-color 0.3s ease; 
     
     img {
       width: 100%;
@@ -33,13 +49,20 @@
   }
 }
 
+.slick-center .project-slide {
+  opacity: 1;            
+  transform: scale(1.0); 
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12); 
+}
+
 .project-info-box {
   padding: 24px;
   text-align: left;
 
   h2 {
     margin-top: 0;
-    color: #111;
+    color: var(--card-text-color); 
+    transition: color 0.3s ease;
   }
 }
 
@@ -77,6 +100,27 @@
   
 .projects-container .projects-grid .project {
     text-align: left;
+    
+    background: var(--card-bg-color);
+    padding: 20px;
+    border-radius: 12px;
+    transition: background-color 0.3s ease;
+    
+    h2 {
+        color: var(--card-text-color);
+        transition: color 0.3s ease;
+        margin-top: 0;
+        
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+    
+    p {
+        color: var(--card-text-color);
+        opacity: 0.85; 
+        transition: color 0.3s ease;
+    }
 }
   
 .project h2:hover {
@@ -95,19 +139,17 @@
 }
 
 @media screen {
-    @media (max-width: 700px) {
-        .projects-container {
-            display: block;
-            padding-left: 5%;
-            padding-right: 5%;
-        }
-  
-        .projects-container .projects-grid {
-            display: block;
-        }
-      
-        .projects-container .projects-grid .project {
-            padding-bottom: 5%;
-        }
+      @media (max-width: 768px) {
+    .projects-carousel-wrapper {
+      .slick-list {
+        padding: 0 !important; 
+      }
     }
+    .project-slide {
+      opacity: 1;
+      transform: scale(1);
+      padding: 10px;
+    }
+  }
 }
+

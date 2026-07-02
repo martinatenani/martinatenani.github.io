@@ -34,19 +34,16 @@ const projectsData = [
 
 //Inline styling for MUI modal container
 const modalStyle = {
-    position: 'absolute' as 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: '90%',
-    maxWidth: '650px',
-    bgcolor: 'background.paper',
-    boxShadow: 24,
-    p: 4,
-    borderRadius: '16px',
-    outline: 'none',
-    maxHeight: '85vh',
-    overflowY: 'auto'
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: '90%',
+  maxWidth: '600px',
+  boxShadow: 24,
+  p: 4,
+  borderRadius: '12px',
+  outline: 'none',
 };
 
 function Project() {
@@ -57,10 +54,13 @@ function Project() {
 
     //configure carousel
     const settings = {
-        dots: true,
+        className: "center",
+        centerMode: true,
         infinite: true,
+        centerPadding: "60px", 
+        slidesToShow: 1,       
         speed: 500,
-        slidesToShow: 1,
+        dots: true,
         slidesToScroll: 1,
         arrows: true
     }
@@ -101,49 +101,48 @@ function Project() {
       </div>
 
     {/* MODAL OVERVIEW COMPONENT */}
-    <Modal
-        open={Boolean(selectedProject)}
-        onClose={() => setSelectedProject(null)}
-        aria-labelledby="modal-title"
-      >
-        <Box sx={modalStyle}>
-          {selectedProject && (
-            <div>
-              <img src={selectedProject.image} alt={selectedProject.title} style={{ width: '100%', borderRadius: '8px', marginBottom: '16px' }} />
-              
-              <Typography id="modal-title" variant="h4" component="h2" fontWeight="bold">
-                {selectedProject.title}
-              </Typography>
+  <Modal
+      open={Boolean(selectedProject)}
+      onClose={() => setSelectedProject(null)}
+      aria-labelledby="modal-title"
+    >
+      <Box sx={modalStyle} className="custom-theme-modal">
+        {selectedProject && (
+          <div>
+            <img src={selectedProject.image} alt={selectedProject.title} style={{ width: '100%', borderRadius: '8px', marginBottom: '16px' }} />
+            
+            <Typography id="modal-title" variant="h4" component="h2" fontWeight="bold">
+              {selectedProject.title}
+            </Typography>
 
-              <div className="project-tags" style={{ margin: '12px 0' }}>
-                {selectedProject.tags.map((tag, index) => (
-                  <span key={index} className="tag">{tag}</span>
-                ))}
-              </div>
+            <div className="project-tags" style={{ margin: '12px 0' }}>
+              {selectedProject.tags.map((tag, index) => (
+                <span key={index} className="tag">{tag}</span>
+              ))}
+            </div>
 
-              <Typography sx={{ mt: 2, color: '#555', lineHeight: '1.6' }}>
-                {selectedProject.longDescription}
-              </Typography>
+            {/* UPDATED: Changed hardcoded #555 to look at your theme variable */}
+            <Typography sx={{ mt: 2, color: 'var(--modal-text-secondary)', lineHeight: '1.6' }}>
+              {selectedProject.longDescription}
+            </Typography>
 
-              <Button 
-                variant="contained" 
-                color="primary"
-                sx={{ mt: 4, width: '100%', textTransform: 'none', fontWeight: 'bold', borderRadius: '8px', padding: '10px' }}
-               onClick={() => {
+            <Button 
+              variant="contained" 
+              color="primary"
+              sx={{ mt: 4, width: '100%', textTransform: 'none', fontWeight: 'bold', borderRadius: '8px', padding: '10px' }}
+              onClick={() => {
                 if (selectedProject) {
-
                   setSelectedProject(null); 
                   navigate(`/project/${selectedProject.slug}`);
-                  
                 }
               }}
-              >
-                Read Full Technical Case Study ↗
-              </Button>
-            </div>
-          )}
-        </Box>
-      </Modal>
+            >
+              Read Full Technical Case Study ↗
+            </Button>
+          </div>
+        )}
+      </Box>
+    </Modal>
 
     </div>
     );
